@@ -47,6 +47,8 @@ async def createUser(client: Model):
             session.commit()
     except Exception as err:
         return JSONResponse(content={"error_message": err, "error_type": type(err).__name__})
+    finally:
+        return JSONResponse(content={"message": "Create successful!"})
 
 
 @api_router.put("/api/update/{id}")
@@ -58,5 +60,18 @@ async def updateUser(id: int, client: Model):
         info.email = client.email if client.email != "string" else info.email
         info.endereco = client.endereco if client.endereco != "string" else info.endereco
         info.telefone = client.telefone if client.telefone != 0 else info.telefone
+        return JSONResponse(content={"message": f"Updated successful!"})
     else:
         return JSONResponse(content={"message": f"Client with ID {id} not found!"})
+
+
+@api_router.delete("/api/delete/{id}")
+async def deleteUser(id: int):
+    user = session.query(Client).filter_by(id=id).first()
+    try:
+        session.delete(user)        
+        session.commit()
+    except Exception:
+        return JSONResponse(content={"message": f"Cliente with ID {id} not found!"})
+    finally:
+        return JSONResponse(content={"message": f"Delete successful!"})
