@@ -22,7 +22,7 @@
   </p>
   <ul>
     <li><b>Open an IDE of your preference, like PyCharm or VSCode</b></li>
-    <li><b>Before execute the program, make if venv folder exists</b></li>
+    <li><b>Before execute the program, make sure if venv folder exists</b></li>
     <li><b>If everything goes well, you can run the main.py in your IDE</b></li>
   </ul>
   <p>
