@@ -13,7 +13,7 @@
   </p>
   <h2>📁 Acessing the project</h2>
   <p>
-    You can access the <a href="https://github.com/erikgabriel07/FastAPI-Python/">source code of the project</a> or <a href="#">download it.</a>
+    You can access the <a href="[https://github.com/erikgabriel07/FastAPI-Python/](https://github.com/erikgabriel07/FastAPI-Python/tree/main/source)">source code of the project</a> or <a href="https://github.com/erikgabriel07/FastAPI-Python/archive/refs/heads/main.zip">download it.</a>
   </p>
   <h2>🛠️ Opening and running the project</h2>
   <p>
