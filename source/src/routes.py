@@ -5,6 +5,7 @@ from .config import session
 from .schema import Client
 from .model import Model
 
+
 api_router = APIRouter()
 
 
@@ -34,7 +35,7 @@ async def getUsers(id: int):
                            "endereco": info.endereco,
                            "telefone": info.telefone}
     else:
-        return JSONResponse(content={"message": f"Client with ID {id} not found!"})
+        return JSONResponse(content={"message": "Client not found!"})
     return JSONResponse(content=content)
 
 
@@ -68,10 +69,9 @@ async def updateUser(id: int, client: Model):
 @api_router.delete("/api/delete/{id}")
 async def deleteUser(id: int):
     user = session.query(Client).filter_by(id=id).first()
-    try:
-        session.delete(user)        
+    if user:
+        session.delete(user)
         session.commit()
-    except Exception:
-        return JSONResponse(content={"message": f"Cliente with ID {id} not found!"})
-    finally:
         return JSONResponse(content={"message": f"Delete successful!"})
+    else:
+        return JSONResponse(content={"message": f"Cliente with ID {id} not found!"})
