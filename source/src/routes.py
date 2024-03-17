@@ -61,7 +61,7 @@ async def updateUser(id: int, client: Model):
         info.email = client.email if client.email != "string" else info.email
         info.endereco = client.endereco if client.endereco != "string" else info.endereco
         info.telefone = client.telefone if client.telefone != 0 else info.telefone
-        return JSONResponse(content={"message": f"Updated successful!"})
+        return JSONResponse(content={"message": f"Update successful!"})
     else:
         return JSONResponse(content={"message": f"Client with ID {id} not found!"})
 
@@ -71,6 +71,8 @@ async def deleteUser(id: int):
     user = session.query(Client).filter_by(id=id).first()
     if user:
         session.delete(user)
+        for client in session.query(Client).filter(Client.id > user.id).all():
+            client.id -= 1
         session.commit()
         return JSONResponse(content={"message": f"Delete successful!"})
     else:
